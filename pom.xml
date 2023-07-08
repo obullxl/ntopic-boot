@@ -14,17 +14,18 @@
     <version>1.0.1</version>
     <packaging>pom</packaging>
 
-    <name>ntopic</name>
+    <name>ntopic-parent</name>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springboot.boot.version>2.5.3</springboot.boot.version>
+        <ntopic.version>1.0.1</ntopic.version>
     </properties>
 
     <modules>
         <module>ntopic-test</module>
-        <module>ntopic-bootstrap</module>
+        <module>ntopic</module>
         <module>ntopic-service</module>
         <module>ntopic-das</module>
         <module>ntopic-client</module>
@@ -37,32 +38,32 @@
 			<dependency>
 				<groupId>ntopic</groupId>
 				<artifactId>ntopic-lang</artifactId>
-				<version>1.0.1</version>
+				<version>${ntopic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ntopic</groupId>
 				<artifactId>ntopic-client</artifactId>
-				<version>1.0.1</version>
+				<version>${ntopic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ntopic</groupId>
 				<artifactId>ntopic-das</artifactId>
-				<version>1.0.1</version>
+				<version>${ntopic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ntopic</groupId>
 				<artifactId>ntopic-service</artifactId>
-				<version>1.0.1</version>
+				<version>${ntopic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ntopic</groupId>
-				<artifactId>ntopic-bootstrap</artifactId>
-				<version>1.0.1</version>
+				<artifactId>ntopic</artifactId>
+				<version>${ntopic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ntopic</groupId>
 				<artifactId>ntopic-test</artifactId>
-				<version>1.0.1</version>
+				<version>${ntopic.version}</version>
 			</dependency>
 
 			<!-- devtools-->

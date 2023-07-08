@@ -1,2 +1,2 @@
 # NTopicBoot
-Java相关技术演示空间~
+NTopic-Java专业技术空间~

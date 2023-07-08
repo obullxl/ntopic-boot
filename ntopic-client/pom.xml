@@ -10,7 +10,7 @@
 
     <artifactId>ntopic-client</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>${ntopic.version}</version>
 
     <name>ntopic-client</name>
 

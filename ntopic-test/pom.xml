@@ -10,7 +10,7 @@
 
     <artifactId>ntopic-test</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>${ntopic.version}</version>
 
     <name>ntopic-test</name>
 
@@ -18,7 +18,7 @@
         <!-- NTopic Module -->
         <dependency>
             <groupId>ntopic</groupId>
-            <artifactId>ntopic-bootstrap</artifactId>
+            <artifactId>ntopic</artifactId>
         </dependency>
 
         <!-- sequence-jdbc -->
