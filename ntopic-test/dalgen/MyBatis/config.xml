@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<NTGenerate codePackage="ntopic.das" dtoBaseClass="cn.ntopic.core.builder.ToString">
+    <NTTables>
+        <NTTable name="nt_user_base" alias="u" object="UserBase">
+            <!--
+            <NTTypes>
+                <NTType>NTListX</NTType>
+                <NTType>NTMapX</NTType>
+            </NTTypes>
+            -->
+            <NTFields>
+                <NTField field="id" nullable="N" maxSize="64"/>
+                <NTField field="name" nullable="N" maxSize="128"/>
+                <NTField field="password" nullable="N" maxSize="64"/>
+                <NTField field="role_list" maxSize="256"/>
+                <NTField field="ext_map" maxSize="4096"/>
+                <NTField field="create_time" jdbcType="TIMESTAMP" nullable="N"/>
+                <NTField field="modify_time" jdbcType="TIMESTAMP" nullable="N"/>
+            </NTFields>
+        </NTTable>
+    </NTTables>
+</NTGenerate>

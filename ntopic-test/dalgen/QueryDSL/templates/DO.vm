@@ -1,0 +1,73 @@
+/**
+ * Author: obullxl@163.com
+ * Copyright (c) 2020-${year} All Rights Reserved.
+ */
+package ${config.codePackage}.model;
+
+import javax.annotation.Generated;
+
+#if(${table.checkMaxSize()})
+import javax.validation.constraints.Size;
+#end
+
+#if(${table.checkNotNull()})
+import javax.validation.constraints.NotNull;
+#end
+
+import com.querydsl.sql.Column;
+
+#foreach($userType in ${table.userTypes})
+import $!{userType};
+#end
+
+/**
+ * QueryDSL数据表对象
+ *
+ * 数据表: ${table.tableName}
+ *
+ * 特别注意：本文件由代码生成器自动生成，请勿直接修改！
+ */
+@Generated("https://gitee.com/obullxl/ntopic-boot")
+public class ${table.objectName}DO extends ${table.dtoBaseClass} {
+
+    /* 数据表名 */
+    public static final String TABLE_NAME = "${table.tableName}";
+
+    // ~~~~~~~~~~~~~~~~ 属性名常量 ~~~~~~~~~~~~~~~~~ //
+
+#foreach($field in ${table.fields})
+    public static final String ${field.toJavaConst()} = "${field.toJavaCode()}";
+#end
+
+    // ~~~~~~~~~~~~~~~~ 表字段列表 ~~~~~~~~~~~~~~~~~ //
+
+#foreach($field in ${table.fields})
+#if(${field.checkNotNull()})
+    @NotNull
+#end
+#if(${field.checkMaxSize()})
+    @Size(max=${field.columnSize})
+#end
+    @Column("${field.field}")
+    private ${field.findJavaType()} ${field.toJavaCode()};
+
+#end
+
+    // ~~~~~~~~~~~~~~~~ 表字段访问器 ~~~~~~~~~~~~~~~~~ //
+
+#foreach($field in ${table.fields})
+    public ${field.findJavaType()} ${field.findGetterName()}() {
+#if(${field.checkDtoValue()})
+        if(this.${field.toJavaCode()} == null) {
+            this.${field.toJavaCode()} = ${field.dtoValue};
+        }
+
+#end
+        return this.${field.toJavaCode()};
+    }
+    public void ${field.findSetterName()}(${field.findJavaType()} ${field.toJavaCode()}) {
+        this.${field.toJavaCode()} = ${field.toJavaCode()};
+    }
+
+#end
+}

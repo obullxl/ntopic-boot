@@ -1,0 +1,117 @@
+/**
+ * Author: obullxl@163.com
+ * Copyright (c) 2020-${year} All Rights Reserved.
+ */
+package ${config.codePackage}.table;
+
+import ${config.codePackage}.model.${table.objectName}DO;
+
+#if(${table.checkNumberPath()})
+import com.querydsl.core.types.dsl.NumberPath;
+#end
+#if(${table.checkStringPath()})
+import com.querydsl.core.types.dsl.StringPath;
+#end
+#if(${table.checkDateTimePath()})
+import java.util.Date;
+import com.querydsl.core.types.dsl.DateTimePath;
+#end
+#if(${table.checkSimplePathType()})
+import com.querydsl.core.types.dsl.SimplePath;
+#end
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.PathMetadataFactory;
+import com.querydsl.sql.ColumnMetadata;
+
+import javax.annotation.Generated;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+#foreach($userType in ${table.userTypes})
+import $!{userType};
+#end
+
+/**
+ * QueryDSL数据表查询
+ *
+ * 数据表: ${table.tableName}
+ *
+ * 特别注意：本文件由代码生成器自动生成，请勿直接修改！
+ */
+@Generated("https://gitee.com/obullxl/ntopic-boot")
+public class ${table.objectName}DSL extends com.querydsl.sql.RelationalPathBase<${table.objectName}DO> {
+
+    /* 数据表名 */
+    public static final String TABLE_NAME = "${table.tableName}";
+
+    /* DSL默认实例 */
+    public static final ${table.objectName}DSL DSL = newDSL("${table.aliasName}");
+
+    // ~~~~~~~~~~~~~~~~ 表字段列表 ~~~~~~~~~~~~~~~~~ //
+
+#foreach($field in ${table.fields})
+#if(${field.checkStringType()})
+    public final StringPath ${field.toJavaCode()} = super.createString("${field.toJavaCode()}");
+#elseif(${field.checkNumberType()})
+    public final NumberPath<${field.findJavaType()}> ${field.toJavaCode()} = super.createNumber("${field.toJavaCode()}", ${field.findJavaType()}.class);
+#elseif(${field.checkDateTimeType()})
+    public final DateTimePath<Date> ${field.toJavaCode()} = super.createDateTime("${field.toJavaCode()}", Date.class);
+#elseif(${field.checkSimplePathType()})
+    public final SimplePath<${field.findJavaType()}> ${field.toJavaCode()} = super.createSimple("${field.toJavaCode()}", ${field.findJavaType()}.class);
+#end
+#end
+
+    /**
+     * DB记录映射DO对象
+     */
+    public final Optional<${table.objectName}DO> toRecord(Tuple dataRow) {
+        if (dataRow == null) {
+            return Optional.empty();
+        }
+
+        ${table.objectName}DO dataResult = new ${table.objectName}DO();
+#foreach($field in ${table.fields})
+        dataResult.${field.findSetterName()}(dataRow.get(this.${field.toJavaCode()}));
+#end
+
+        return Optional.of(dataResult);
+    }
+
+    /**
+     * DB记录映射DO对象
+     */
+    public final List<${table.objectName}DO> toRecords(List<Tuple> dataRows) {
+        if (dataRows == null || dataRows.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return dataRows.stream()
+                .map(this::toRecord)
+                .filter(t -> t.isPresent())
+                .map(t -> t.get())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * DSL构建器
+     */
+    private ${table.objectName}DSL(String variable) {
+        super(${table.objectName}DO.class, PathMetadataFactory.forVariable(variable), null, TABLE_NAME);
+
+#foreach($field in ${table.fields})
+        super.addMetadata(this.${field.toJavaCode()}, ColumnMetadata.named("${field.field}").withIndex(${field.index}).ofType(Types.${field.findJdbcTypeEnum().name()})#if(${field.checkMaxSize()}).withSize(${field.columnSize})#end);
+#end
+    }
+
+    /**
+     * 新建DSL对象
+     */
+    public static final ${table.objectName}DSL newDSL(String variable) {
+        return new ${table.objectName}DSL(variable);
+    }
+
+}
+

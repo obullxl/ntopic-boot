@@ -1,0 +1,33 @@
+<configuration>
+    <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,%i索引【从数字0开始递增】,,, -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %p (%file:%line\)- %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="NTopicLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/NTopic.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/NTopic.%d.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %p (%file:%line\)- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <logger name="util" level="DEBUG">
+        <appender-ref ref="NTopicLog" />
+    </logger>
+    <logger name="mybatis" level="DEBUG">
+        <appender-ref ref="NTopicLog" />
+    </logger>
+    <logger name="ntopic" level="DEBUG">
+        <appender-ref ref="NTopicLog" />
+    </logger>
+</configuration>

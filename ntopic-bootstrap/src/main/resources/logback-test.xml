@@ -1,0 +1,24 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %5p (%file:%line\)- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <logger name="util" level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="mybatis" level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="ntopic" level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="plugin" level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </logger>
+</configuration>
