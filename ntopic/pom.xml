@@ -3,13 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>ntopic</groupId>
+        <groupId>cn.ntopic</groupId>
         <artifactId>ntopic-parent</artifactId>
         <version>1.0.1</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>ntopic</artifactId>
-    <version>${ntopic.version}</version>
+    <version>${cn.ntopic.version}</version>
     <packaging>jar</packaging>
 
     <name>ntopic</name>
@@ -17,7 +18,7 @@
     <dependencies>
         <!-- NTopic Module -->
         <dependency>
-            <groupId>ntopic</groupId>
+            <groupId>cn.ntopic</groupId>
             <artifactId>ntopic-service</artifactId>
         </dependency>
 

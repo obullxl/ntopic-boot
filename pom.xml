@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>ntopic</groupId>
+    <groupId>cn.ntopic</groupId>
     <artifactId>ntopic-parent</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springboot.boot.version>2.5.3</springboot.boot.version>
-        <ntopic.version>1.0.1</ntopic.version>
+        <cn.ntopic.version>1.0.1</cn.ntopic.version>
     </properties>
 
     <modules>
@@ -36,34 +36,34 @@
         <dependencies>
 			<!-- NTopic Modules -->
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic-lang</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic-client</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic-das</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic-service</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>ntopic</groupId>
+				<groupId>cn.ntopic</groupId>
 				<artifactId>ntopic-test</artifactId>
-				<version>${ntopic.version}</version>
+				<version>${cn.ntopic.version}</version>
 			</dependency>
 
 			<!-- devtools-->
