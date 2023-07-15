@@ -23,6 +23,8 @@
 hs_err_pid*
 
 .DS_Store
+**/.DS_Store
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
