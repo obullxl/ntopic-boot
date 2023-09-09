@@ -5,8 +5,10 @@
 package cn.ntopic.service.impl;
 
 import cn.ntopic.LogConstants;
+import cn.ntopic.NTParamUtils;
 import cn.ntopic.core.exception.NTBizException;
 import cn.ntopic.das.dao.UserBaseDAO;
+import cn.ntopic.das.model.NTParamDO;
 import cn.ntopic.das.model.UserBaseDO;
 import cn.ntopic.enums.NTErrorCodeEnum;
 import cn.ntopic.model.UserBaseModel;
@@ -25,9 +27,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +41,7 @@ import java.util.stream.Collectors;
  *
  * @author obullxl 2021年06月19日: 新增
  */
-@Service("ntUserService")
+@Component("ntUserService")
 public final class NTUserServiceImpl implements NTUserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogConstants.BIZ);
 
@@ -70,6 +73,9 @@ public final class NTUserServiceImpl implements NTUserService {
 
 //        this.ntSequenceX = ntSequenceX;
         this.userBaseDAO = userBaseDAO;
+
+        // 打印日志
+        LOGGER.info("{}:初始化完成.", this.getClass().getName());
     }
 
     /**
@@ -154,5 +160,13 @@ public final class NTUserServiceImpl implements NTUserService {
     public Optional<UserBaseModel> findByName(String name) {
         UserBaseDO userBaseDO = this.userBaseDAO.selectByName(name);
         return Optional.ofNullable(userBaseDO).map(UserBaseModel::from);
+    }
+
+    /**
+     * 获取用户模块参数
+     */
+    @Override
+    public List<NTParamDO> findUserParamList() {
+        return NTParamUtils.findList("CONFIG", "USER");
     }
 }

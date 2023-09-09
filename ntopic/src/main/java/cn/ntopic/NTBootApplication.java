@@ -4,6 +4,7 @@
  */
 package cn.ntopic;
 
+import cn.ntopic.bootstrap.NTApplicationContextInitializer;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -25,7 +27,7 @@ import javax.sql.DataSource;
  *
  * @author obullxl 2021年06月05日: 新增
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @MapperScan(basePackages = "cn.ntopic.das..**.dao", sqlSessionFactoryRef = "ntSqlSessionFactory")
 public class NTBootApplication {
 
@@ -33,7 +35,12 @@ public class NTBootApplication {
      * SpringBoot启动
      */
     public static void main(String[] args) {
-        SpringApplication.run(NTBootApplication.class, args);
+        // 注册自定义处理器
+        SpringApplication application = new SpringApplication(NTBootApplication.class);
+        application.addInitializers(new NTApplicationContextInitializer());
+
+        // SpringBoot启动
+        application.run(args);
     }
 
     /**

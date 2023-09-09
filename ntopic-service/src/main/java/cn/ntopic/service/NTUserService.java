@@ -4,10 +4,12 @@
  */
 package cn.ntopic.service;
 
+import cn.ntopic.das.model.NTParamDO;
 import cn.ntopic.enums.NTSequenceEnum;
 import cn.ntopic.model.UserBaseModel;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -41,5 +43,10 @@ public interface NTUserService extends UserDetailsService {
      * 根据名称查询用户信息
      */
     Optional<UserBaseModel> findByName(String name);
+
+    /**
+     * 获取用户模块参数
+     */
+    List<NTParamDO> findUserParamList();
 
 }
