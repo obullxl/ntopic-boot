@@ -4,6 +4,7 @@
  */
 package cn.ntopic.das.dao;
 
+import cn.ntopic.NTBootApplication;
 import cn.ntopic.das.model.UserBaseDO;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +22,7 @@ import java.util.Date;
 /**
  * @author obullxl 2021年10月17日: 新增
  */
-@SpringBootTest
+@SpringBootTest(classes = {NTBootApplication.class})
 @RunWith(SpringRunner.class)
 public class UserBaseDAOTest extends AbstractJUnit4SpringContextTests {
 
